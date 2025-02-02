@@ -16,7 +16,6 @@ const defaultState = {
 
 export const EventProvider = ({ children }) => {
   const [event, setEventState] = useState(defaultState);
-  console.log("event:", event);
 
   const setEvent = (key, value) => {
     setEventState((prev) => ({ ...prev, [key]: value }));
