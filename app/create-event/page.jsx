@@ -12,6 +12,7 @@ import { EventProvider } from "@/store/EventContext";
 import CreateButton from "@/components/create-buttons/create-btn";
 import EventName from "@/components/event-name";
 import useIsMobile from "@/hooks/useIsMobile";
+import Errors from "@/components/errors";
 
 export default function CreateEvents() {
   const isMobile = useIsMobile();
@@ -48,6 +49,7 @@ export default function CreateEvents() {
               <StartAndEndDate />
               <ChooseLocation />
               <AddDescription />
+              <Errors />
             </div>
           </div>
           {isMobile && <CreateButton />}

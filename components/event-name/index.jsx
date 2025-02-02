@@ -2,7 +2,7 @@ import { useEvent } from "@/store/EventContext";
 import { Input } from "../ui/input";
 
 export default function EventName() {
-  const { setEvent } = useEvent();
+  const { setEvent, event } = useEvent();
 
   const handleOnChangeValue = (event) => {
     setEvent("title", event.target.value);
@@ -17,6 +17,7 @@ export default function EventName() {
         <Input
           className="rounded-lg"
           type="test"
+          value={event.title}
           placeholder="Event Name"
           onChange={handleOnChangeValue}
         />

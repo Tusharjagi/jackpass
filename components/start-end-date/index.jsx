@@ -4,8 +4,11 @@ import { DateTimePicker } from "../custom-ui/custom-date-picker";
 import { useEvent } from "@/store/EventContext";
 
 export default function StartAndEndDate() {
-  const { setEvent } = useEvent();
-  const [dates, setDates] = useState({ startDate: null, endDate: null });
+  const { setEvent, event } = useEvent();
+  const [dates, setDates] = useState({
+    startDate: event.startDate,
+    endDate: event.endDate,
+  });
 
   const handleDateChange = (type, date) => {
     if (date) {

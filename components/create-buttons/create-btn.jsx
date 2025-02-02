@@ -4,10 +4,26 @@ import { useEvent } from "@/store/EventContext";
 
 export default function CreateButton() {
   const isMobile = useIsMobile();
-  const { event } = useEvent();
+  const { event, setEvent, resetEvent } = useEvent();
+  const { image, description, title, startDate, endDate } = event;
 
   const storeEventInLocalStorage = () => {
-    localStorage.setItem("eventData", JSON.stringify(event));
+    const missingFields = [];
+    if (!image) missingFields.push("Image/video");
+    if (!description) missingFields.push("Description");
+    if (!title) missingFields.push("Title");
+    if (!startDate) missingFields.push("Start Date");
+    if (!endDate) missingFields.push("End Date");
+
+    if (!missingFields.length) {
+      localStorage.setItem("eventData", JSON.stringify(event));
+      resetEvent();
+    } else {
+      setEvent("error", {
+        message: "Missing required fields",
+        fields: missingFields,
+      });
+    }
   };
 
   return (

@@ -12,13 +12,17 @@ const defaultState = {
   location: "",
   description: "",
   image: null,
+  error: {},
 };
 
 export const EventProvider = ({ children }) => {
   const [event, setEventState] = useState(defaultState);
 
   const setEvent = (key, value) => {
-    setEventState((prev) => ({ ...prev, [key]: value }));
+    setEventState((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
   };
 
   const resetEvent = () => {

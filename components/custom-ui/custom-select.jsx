@@ -8,13 +8,17 @@ import {
 } from "../ui/select";
 
 export default function CustomSelect({ selectOptions, placeholder }) {
-  const { setEvent } = useEvent();
+  const { setEvent, event } = useEvent();
   const onValueChange = (value) => {
     setEvent("community", value);
   };
 
   return (
-    <Select className="rounded-full" onValueChange={onValueChange}>
+    <Select
+      className="rounded-full"
+      onValueChange={onValueChange}
+      value={event.community}
+    >
       <SelectTrigger className="w-full">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>

@@ -4,7 +4,7 @@ import { Textarea } from "../ui/textarea";
 import { useEvent } from "@/store/EventContext";
 
 export default function AddDescription() {
-  const { setEvent } = useEvent();
+  const { setEvent, event } = useEvent();
   const [isClickOnDescription, setIsClickOnDescription] = useState(false);
 
   const handleDescriptionClick = () => {
@@ -39,6 +39,7 @@ export default function AddDescription() {
               placeholder="Type your message here."
               className="w-[280px]"
               onChange={handleOnChange}
+              value={event.description}
             />
           ) : (
             <span className="text-xs text-gray-600">
