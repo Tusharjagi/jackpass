@@ -9,11 +9,13 @@ import StartAndEndDate from "@/components/start-end-date";
 import ChooseLocation from "@/components/choose-location";
 import AddDescription from "@/components/add-description";
 import { EventProvider } from "@/store/EventContext";
-import CreateButtonDesktop from "@/components/create-buttons/desktop-create-btn";
-import CreateButtonMobile from "@/components/create-buttons/mobile-create-btn";
+import CreateButton from "@/components/create-buttons/create-btn";
 import EventName from "@/components/event-name";
+import useIsMobile from "@/hooks/useIsMobile";
 
 export default function CreateEvents() {
+  const isMobile = useIsMobile();
+
   const handleHomeButton = () => {
     redirect("/");
   };
@@ -31,7 +33,8 @@ export default function CreateEvents() {
           <div className="font-semibold p-2 text-lg text-center">
             Create Event
           </div>
-          <CreateButtonDesktop />
+          {!isMobile && <CreateButton />}
+
           <div className="flex flex-col sm:flex-row sm:gap-10">
             <FileInput />
             <div className="flex flex-col gap-2 p-6 sm:w-[400px]">
@@ -47,8 +50,7 @@ export default function CreateEvents() {
               <AddDescription />
             </div>
           </div>
-
-          <CreateButtonMobile />
+          {isMobile && <CreateButton />}
         </div>
       </div>
     </EventProvider>
