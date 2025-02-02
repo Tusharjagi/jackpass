@@ -12,6 +12,7 @@ const defaultState = {
   location: "",
   description: "",
   image: null,
+  video: null,
   error: {},
 };
 

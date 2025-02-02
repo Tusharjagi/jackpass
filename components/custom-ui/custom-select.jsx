@@ -25,7 +25,7 @@ export default function CustomSelect({ selectOptions, placeholder }) {
       <SelectContent>
         {selectOptions.map(({ id, name }) => {
           return (
-            <SelectItem className="cursor-pointer" key={id} value={id}>
+            <SelectItem className="cursor-pointer" key={id} value={name}>
               {name}
             </SelectItem>
           );

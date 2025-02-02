@@ -5,18 +5,20 @@ import { useEvent } from "@/store/EventContext";
 export default function CreateButton() {
   const isMobile = useIsMobile();
   const { event, setEvent, resetEvent } = useEvent();
-  const { image, description, title, startDate, endDate } = event;
+  const { image, video, description, title, startDate, endDate } = event;
 
   const storeEventInLocalStorage = () => {
     const missingFields = [];
-    if (!image) missingFields.push("Image/video");
+    if (!video && !image) missingFields.push("Image/Video");
     if (!description) missingFields.push("Description");
     if (!title) missingFields.push("Title");
     if (!startDate) missingFields.push("Start Date");
     if (!endDate) missingFields.push("End Date");
 
     if (!missingFields.length) {
-      localStorage.setItem("eventData", JSON.stringify(event));
+      const existingEvents = JSON.parse(localStorage.getItem("events")) || [];
+      existingEvents.push(event);
+      localStorage.setItem("events", JSON.stringify(existingEvents));
       resetEvent();
     } else {
       setEvent("error", {

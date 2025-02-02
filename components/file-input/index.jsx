@@ -10,14 +10,23 @@ export default function FileInput() {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        const base64String = reader.result;
-        setEvent("image", base64String);
-      };
-      reader.onerror = (error) => {
-        console.error("Error reading file:", error);
-      };
+      const fileType = file.type.split("/")[0];
+
+      if (fileType === "image") {
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          const base64String = reader.result;
+          setEvent("image", base64String);
+        };
+        reader.onerror = (error) => {
+          console.error("Error reading image file:", error);
+        };
+      } else if (fileType === "video") {
+        const videoUrl = URL.createObjectURL(file);
+        setEvent("video", videoUrl);
+      } else {
+        console.error("Unsupported file type:", file.type);
+      }
     }
   };
 
