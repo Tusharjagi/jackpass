@@ -1,3 +1,4 @@
+import { useEvent } from "@/store/EventContext";
 import {
   Select,
   SelectContent,
@@ -7,8 +8,13 @@ import {
 } from "../ui/select";
 
 export default function CustomSelect({ selectOptions, placeholder }) {
+  const { setEvent } = useEvent();
+  const onValueChange = (value) => {
+    setEvent("community", value);
+  };
+
   return (
-    <Select className="rounded-full">
+    <Select className="rounded-full" onValueChange={onValueChange}>
       <SelectTrigger className="w-full">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>

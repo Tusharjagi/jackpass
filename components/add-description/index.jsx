@@ -9,7 +9,7 @@ export default function AddDescription() {
           <h2>
             Add Description <span className="text-red-600">*</span>
           </h2>
-          <span className="text-sm text-gray-800">
+          <span className="text-xs text-gray-600">
             Add a brief description to let attendees know what your event all
             about
           </span>

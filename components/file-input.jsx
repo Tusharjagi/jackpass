@@ -1,14 +1,29 @@
-import useIsMobile from "@/hooks/useIsMobile";
 import Image from "next/image";
+import useIsMobile from "@/hooks/useIsMobile";
+import { useEvent } from "@/store/EventContext";
 
 export default function FileInput() {
   const isMobile = useIsMobile();
+  const { setEvent } = useEvent();
 
-  const handleFileUpload = () => {};
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const base64String = reader.result;
+        setEvent("image", base64String);
+      };
+      reader.onerror = (error) => {
+        console.error("Error reading file:", error);
+      };
+    }
+  };
 
   return (
     <div className="relative cursor-pointer">
-      <label htmlFor="file-upload cursor-pointer">
+      <label htmlFor="file-upload">
         <Image
           src="/icons/art-gallery-icon.png"
           height={isMobile ? 1000 : 400}
