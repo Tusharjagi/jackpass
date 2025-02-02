@@ -15,9 +15,7 @@ export default function CreateButton() {
       className={isMobile ? "mx-8 my-4" : "absolute top-[100px] right-[40px]"}
     >
       <Button
-        className={
-          isMobile ? "w-full rounded-full text-base" : "rounded-full text-base"
-        }
+        className={`rounded-full text-base ${isMobile ? "w-full" : ""}`}
         onClick={storeEventInLocalStorage}
       >
         Create Event
